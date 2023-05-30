@@ -1,0 +1,116 @@
+@font-face {
+    font-family: Nordic;
+    src: url(Norse-Bold.otf);
+}
+
+body {
+    background-image: url(img/background.png);
+    margin: 0px;
+}
+
+.main {
+    display: flex;
+    height: 100vh;
+}
+
+.sideHero {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: space-between;
+    color: white;
+}
+
+.heroBanner {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.400);
+    height: 20vh;
+    font-size: 60px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+    font-family: Nordic;
+}
+
+.heroBanner > img {
+    height: 100%;
+}
+
+.heroFooter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60vw;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(214, 214, 214);
+}
+
+.formHeader {
+    font-weight: bold;
+    padding: 4vw;
+    padding-bottom: 2vw;
+}
+
+.formFieldContainer {
+    background-color: rgb(168, 168, 168);
+    padding: 4vw;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+}
+
+.inputRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.inputRow > div {
+    width: 50%;
+    margin: 5px;
+}
+
+input {
+    width: 90%;
+}
+
+.submitForm {
+    padding: 4vw;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.signedUp {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+    height: 48px;
+    width: 30%;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+p {
+    margin-top: 0px;
+}
