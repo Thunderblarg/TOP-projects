@@ -40,6 +40,7 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 2vh;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .formSection {
@@ -49,7 +50,8 @@ body {
     width: 60vw;
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(214, 214, 214);
+    background-image: url(img/swirl.png);
+    color: rgb(216, 216, 216);
 }
 
 .formHeader {
@@ -59,7 +61,8 @@ body {
 }
 
 .formFieldContainer {
-    background-color: rgb(168, 168, 168);
+    background-image: url(img/space.png);
+    background-position: right 800px bottom 500px;
     padding: 4vw;
     padding-top: 3vh;
     padding-bottom: 3vh;
@@ -90,6 +93,22 @@ input {
     width: 90%;
 }
 
+input:focus {
+    border-color: blue;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 10px 5px 5px rgb(79, 60, 255);
+}
+
+.error {
+    font-size: 10px;
+    font-weight: bold;
+    color:rgb(175, 0, 0);
+    display: none;
+}
+
 .submitForm {
     padding: 4vw;
     padding-top: 3vh;
@@ -105,12 +124,45 @@ button {
     margin-top: 2vh;
     margin-bottom: 1vh;
     height: 48px;
-    width: 30%;
+    width: 200px;
+    min-width: 180px;
     font-size: 24px;
     font-weight: bold;
     border-radius: 5px;
+    white-space: nowrap;
 }
 
 p {
     margin-top: 0px;
+}
+
+@media only screen and (max-width:600px){
+    .main {
+        flex-wrap: wrap;
+    }
+
+    .sideHero {
+        width: 100%;
+    }
+
+    .heroBanner {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+
+    .formSection {
+        width: 100%;
+    }
+
+    .submitForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .buttonWrapper, .signedUp {
+        display: flex;
+        justify-content: center;
+    }
 }

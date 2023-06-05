@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign up now!</title>
     <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="script.js"></script>  
 </head>
 <body>
     <div class="main">
         <div class="sideHero">
             <div class="heroBanner"><img src="/img/odin-lined.png">Odin</div>
-            <div class="heroFooter">ThisIsTheFooter</div>
+            <div class="heroFooter">Josh Alvarado, 2023</div>
         </div>
         <div class="formSection">
             <div class="formHeader">This is not a real online service! But if it were, you would know deep in your soul, that if it was, you would need it more than anything you've ever needed before. You can only lament, as you know you're trapped forever, in a timeline where this service is, and will always remain, fictional. <br><br>
@@ -21,27 +22,32 @@
                 <fieldset class="formField">
                     <div class="inputRow">
                         <div>
-                            <label for="firstName">First Name</label><br>
+                            <label for="firstName">First Name</label>
+                            <div class="error"> Please enter a valid name</div><br>                            
                             <input type="text" id="firstName" name="firstName">
                         </div>
                         <div>    
-                            <label for="lastName">Last Name</label><br>
+                            <label for="lastName">Last Name</label>
+                            <div class="error"> Please enter a valid name</div><br>
                             <input type="text" id="lastName" name="lastName">
                         </div>
                     </div>
                     <div class="inputRow">
                         <div>
-                            <label for="emailAddress">Email Address</label><br>
-                            <input type="text" id="emailAddress" name="emailAddress">
+                            <label for="emailAddress">Email Address</label>
+                            <div class="error"> Please enter a valid email address</div><br>
+                            <input type="text" id="emailAddress" name="emailAddress" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         </div>
                         <div>
-                            <label for="phoneNumber">Phone Number</label><br>
-                            <input type="text" id="phoneNumber" name="phoneNumber">
+                            <label for="phoneNumber">Phone Number</label>
+                            <div class="error"> Please enter a valid, 10 digit phone number</div><br>
+                            <input type="text" id="phoneNumber" name="phoneNumber" pattern="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b">
                         </div>
                     </div>
                     <div class="inputRow">
                         <div>
-                            <label for="password">Password</label><br>
+                            <label for="password">Password</label>
+                            <div class="error"> Passwords don't match</div><br>
                             <input type="password" id="password" name="password">
                         </div>
                         <div>
@@ -49,14 +55,15 @@
                             <input type="password" id="verifyPassword" name="verifyPassword">
                         </div>
                     </div>
-                </fieldset>
             </div>
             <div class="submitForm">
-                <button>Create Account</button>
+                <div class="buttonWrapper"><button id="submit" type="submit">Create Account</button></div>
                 <div class="signedUp">
                     Already signed up? <a href="signedup.html">Click here!</a>
                 </div>
             </div>
+            
+            </fieldset>
         </div>
     </div>
 </body>
