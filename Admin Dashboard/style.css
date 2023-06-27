@@ -1,0 +1,273 @@
+@font-face {
+    font-family: Roboto;
+    src: url(./Roboto/Roboto-Black.ttf);
+}
+body {
+    margin: 0px;
+    font-family: Roboto;
+}
+
+.layoutContainer {
+    display: flex;
+    height: auto;
+}
+
+.sidebar {
+    background-color: rgb(49, 143, 250);
+    width: max(18vw, 300px);
+    padding: 12px;
+    color: rgb(255, 255, 255);
+}
+
+.sidebarHeader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.sidebarHeader > img {
+    width: 25%;
+    margin-right: 15px;
+    filter: invert(100%)
+}
+
+.sidebarItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.sidebarItems > ul {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+.sidebarItems > ul > li > div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+li > div > img {
+    width: 17%;
+    margin-right: 15px;
+    filter: invert(100%)
+}
+
+.pageBody {
+    background-color: rgb(155, 155, 155);
+    width: 100%;
+}
+
+.pageHead {
+    display: grid;
+    grid-template: repeat(2, 1fr) / minmax(400px, 3fr) minmax(40%, 300px);
+    align-items: center;
+    background-color: rgb(230, 230, 230);
+    height: 170px;
+    padding-left: 32px;
+    gap: 16px 16px;
+    box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+}
+
+.searchBar{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    grid-area: 1 / 1 / 1 / 1;
+}
+
+.searchBar > img {
+    width: 32px;
+    padding-right: 16px;
+}
+
+.searchBar > input {
+    width: 100%;
+    height: 36px;
+    border-radius: 16px;
+    border-style: none;
+}
+
+.profileBar {
+    grid-area: 1 / 2 / 1 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.notifications {
+    width: 32px;
+}
+
+.profileIcon {
+    width: 52px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 50%;
+}
+
+.salutation {
+    grid-area: 2 / 1 / 2 / 1;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.salutation > img {
+    width: 72px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.greetingContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.greeting {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.name {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.operations {
+    grid-area: 2 / 2 / 2 / 2;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.operations > div {
+    color: rgb(255, 255, 255);
+    background-color: rgb(49, 143, 250);
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 8px;
+    padding-left: 28px;
+    padding-right: 28px;
+    margin-right: 16px;
+    border-radius: 28px;
+}
+
+.pageContent { 
+    padding-top: 24px;
+    padding-bottom: 32px;
+    display: flex;
+}
+
+.projectsContainer {
+    flex-grow: 1;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.sectionHeader {
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+.projectsBoard {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    font-size: 20px;
+}
+
+.projectCard {
+    padding: 20px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 20px;
+    border: 0px;
+    border-left: 16px;
+    border-style: solid;
+}
+
+.cardControl {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+}
+
+.cardControl > img {
+    width: 28px;
+    margin-right: 24px;
+}
+
+.announcements {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    margin-right: 24px;
+}
+
+.announcements {
+    background-color: rgb(226, 226, 226);
+}
+
+.announcementItem {
+    margin-bottom: 6px;
+}
+
+.announcementItem + .announcementItem {
+    border: 0px;
+    border-top: 2px;
+    border-style: solid;
+    padding-top: 6px;
+}
+
+.announcementItemHead {
+    margin-bottom: 8px;
+}
+
+.trendsContainer {
+    margin-top: 16px;
+}
+
+.trending {
+    background-color: rgb(226, 226, 226);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.trendingNameContainer {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.trendingNameContainer > img {
+    width: 64px;
+    margin-right: 16px;
+    border-radius: 32px;
+}
+
+.trendingNameContainer + .trendingNameContainer {
+    margin-top: 12px;
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 14px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
