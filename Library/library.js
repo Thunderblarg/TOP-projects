@@ -187,6 +187,7 @@ function addEventHandlers() {
 
     // Read status button logic
 
+    // Increment read count
     let readIncrement = document.querySelectorAll(".readIncrement");
     readIncrement.forEach(function (currentValue, currentIndex, listObj){
         currentValue.addEventListener("click", function(){
@@ -194,6 +195,21 @@ function addEventHandlers() {
             let bookToUpdate = this.parentElement.previousElementSibling.previousElementSibling.firstChild.innerHTML;
             let updateIndex = myLibrary.findIndex(book => book.title == bookToUpdate);
             myLibrary[updateIndex].read += 1;
+
+            // print the new library
+            console.log("asdfasd");
+            printLibrary();
+        });
+    });
+
+    // Reset read count
+    let readReset = document.querySelectorAll(".readReset");
+    readReset.forEach(function (currentValue, currentIndex, listObj){
+        currentValue.addEventListener("click", function(){
+            // update the number of times the book  
+            let bookToReset = this.parentElement.previousElementSibling.previousElementSibling.firstChild.innerHTML;
+            let updateIndex = myLibrary.findIndex(book => book.title == bookToReset);
+            myLibrary[updateIndex].read = 0;
 
             // print the new library
             console.log("asdfasd");
