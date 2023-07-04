@@ -1,0 +1,64 @@
+body {
+    padding: 16px;
+}
+
+.LibraryContainer {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.libHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-bottom: 32px;
+}
+
+.Bookshelf {
+    margin-bottom: 16px;
+}
+
+input {
+    width: 150px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.book {
+    background-color: rgb(199, 199, 199);
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.bookHead{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.bookHead > p {
+    font-weight: bold;
+    margin-top: 0px;
+}
+
+.removeBook {
+    width: 24px;
+}
+
+.formToggle {
+    width: 150px;
+}
+
+.readToggle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.readToggle > button {
+    width: 150px;
+}
