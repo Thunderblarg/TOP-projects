@@ -1,0 +1,86 @@
+.gameContainer {
+    width: fit-content;    
+    font-family: sans-serif;
+}
+
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#settings {
+    width: 32px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header + div {
+    width: 32px;
+}
+
+.boardContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
+    gap: 4px;
+}
+
+.boardTile {
+    background-color: violet;
+}
+
+.playerTurn {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.playerTurn > div {
+    color: white;
+    padding: 12px;
+    font-size: 24px;
+}
+
+#player1turn {
+    background-color: rgb(46, 46, 172);
+    visibility: visible;
+}
+
+#player2turn {
+    background-color: rgb(212, 67, 67);
+    visibility: hidden;
+}
+
+.resetContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+#resetGame {
+    padding: 12px;
+    background-color: green;
+    font-size: 20px;
+    color: white;
+}
+
+.victoryContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#victory {
+    background-color: gray;
+    padding: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    visibility: hidden;
+}
