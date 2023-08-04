@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //         checkColumn(this);
     //     });
     // });
-    
+    statusManager.intializeStatus();
     statusManager.startGame();
     boardManager.setTiles(document.querySelectorAll(".boardTile"));
     boardManager.addTileEvents();
@@ -92,79 +92,79 @@ document.addEventListener('DOMContentLoaded', function(){
     //     player2 = document.getElementById("player2turn");
     // };
     
-    let checkVictory = function(checkTile){
-        if(checkRow(checkTile)
-        || checkColumn(checkTile)){
-            return true;
-        } else if (corners.includes(checkTile.id)){
-            if (checkDiagonals(checkTile)){
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+    // let checkVictory = function(checkTile){
+    //     if(checkRow(checkTile)
+    //     || checkColumn(checkTile)){
+    //         return true;
+    //     } else if (corners.includes(checkTile.id)){
+    //         if (checkDiagonals(checkTile)){
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    let checkRow = function(checkTile){
-        let row = checkTile.id.charAt(0);
-        let first = document.getElementById(row + "1").innerHTML;
-        let second = document.getElementById(row + "2").innerHTML;
-        let third = document.getElementById(row + "3").innerHTML;
-        if (first  == second
-        &&  second == third){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // let checkRow = function(checkTile){
+    //     let row = checkTile.id.charAt(0);
+    //     let first = document.getElementById(row + "1").innerHTML;
+    //     let second = document.getElementById(row + "2").innerHTML;
+    //     let third = document.getElementById(row + "3").innerHTML;
+    //     if (first  == second
+    //     &&  second == third){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    let checkColumn = function(checkTile){
-        let column = checkTile.id.charAt(1);
-        let first = document.getElementById("a" + column).innerHTML;
-        let second =  document.getElementById("b" + column).innerHTML;
-        let third =  document.getElementById("c" + column).innerHTML;
-        if (first  == second
-        &&  second == third){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // let checkColumn = function(checkTile){
+    //     let column = checkTile.id.charAt(1);
+    //     let first = document.getElementById("a" + column).innerHTML;
+    //     let second =  document.getElementById("b" + column).innerHTML;
+    //     let third =  document.getElementById("c" + column).innerHTML;
+    //     if (first  == second
+    //     &&  second == third){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    let checkDiagonals = function(checkTile){
-        let uLeft = document.getElementById("a1").innerHTML;
-        let uRight = document.getElementById("a3").innerHTML;
-        let lLeft = document.getElementById("c1").innerHTML;
-        let lRight = document.getElementById("c3").innerHTML;
-        let center = document.getElementById("b2").innerHTML;
+    // let checkDiagonals = function(checkTile){
+    //     let uLeft = document.getElementById("a1").innerHTML;
+    //     let uRight = document.getElementById("a3").innerHTML;
+    //     let lLeft = document.getElementById("c1").innerHTML;
+    //     let lRight = document.getElementById("c3").innerHTML;
+    //     let center = document.getElementById("b2").innerHTML;
 
-        if(((uLeft == center && center == lRight) && center)
-        || ((lLeft == center && center == uRight) && center)){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //     if(((uLeft == center && center == lRight) && center)
+    //     || ((lLeft == center && center == uRight) && center)){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    let playerWins = function(player){
-        victory.innerHTML = player + " wins!";
-        victory.style.visibility = "visible";
-        victoryFlag = true
-    }
+    // let playerWins = function(player){
+    //     victory.innerHTML = player + " wins!";
+    //     victory.style.visibility = "visible";
+    //     victoryFlag = true
+    // }
 
-    let playerTurnEnd = function(player){
-        if (player == 1){
-            playerTurn = 2;
-            player1.style.visibility = "hidden";
-            player2.style.visibility = "visible";
-        } else {
-            playerTurn = 1;
-            player2.style.visibility = "hidden";
-            player1.style.visibility = "visible";
-        }
-    }
+    // let playerTurnEnd = function(player){
+    //     if (player == 1){
+    //         playerTurn = 2;
+    //         player1.style.visibility = "hidden";
+    //         player2.style.visibility = "visible";
+    //     } else {
+    //         playerTurn = 1;
+    //         player2.style.visibility = "hidden";
+    //         player1.style.visibility = "visible";
+    //     }
+    // }
 
 
 })
@@ -194,24 +194,31 @@ const statusManager = (() => {
     let settingsEnabled;
     let player1;
     let player2;
-    let player1Name;
-    let player2Name;
+    let player1Name = "Player 1";;
+    let player2Name = "Player 2";;
 
     // HTML snippets
     let turnStatus;
     let settingsForm;
 
-    const startGame = function(){
+    const intializeStatus = function(){
         settingsButton = document.getElementById("settings");
         resetButton = document.getElementById("resetGame");
         playerTurnContainer = document.getElementById("playerTurnContainer");
         victory = document.getElementById("victory");
+    }
+
+    const startGame = function(){
+        // settingsButton = document.getElementById("settings");
+        // resetButton = document.getElementById("resetGame");
+        // playerTurnContainer = document.getElementById("playerTurnContainer");
+        // victory = document.getElementById("victory");
         victoryFlag = false;
         settingsEnabled = false;
         player1 = document.getElementById("player1turn");
         player2 = document.getElementById("player2turn");
-        player1Name = "Player 1";
-        player2Name = "Player 2";
+        // player1Name = "Player 1";
+        // player2Name = "Player 2";
         playerTurn = 1;
 
         player1.style.visibility = "visible";
@@ -241,19 +248,29 @@ const statusManager = (() => {
             let player2NameField = document.getElementById("player2Name");
             let applyButton = document.getElementById("applyNames");
             applyButton.addEventListener("click", function(){
-                player1Name = player1NameField.value;
-                player2Name = player2NameField.value;
+                player1Name = player1NameField.value ? player1NameField.value : player1Name;
+                player2Name = player2NameField.value ? player2NameField.value : player2Name;
                 playerTurnContainer.innerHTML = generateTurnStatus(player1Name, player2Name);
                 player1 = document.getElementById("player1turn");
                 player2 = document.getElementById("player2turn");
+                styleActivePlayer();
                 settingsEnabled = false;
+                if(victoryFlag){
+                    playerWins();
+                }
             });
         } else {
             playerTurnContainer.innerHTML = generateTurnStatus(player1Name, player2Name);
             player1 = document.getElementById("player1turn");
             player2 = document.getElementById("player2turn");
+            styleActivePlayer();
             settingsEnabled = false;
+            if(victoryFlag){
+                playerWins();
+            }
         }
+
+        
     }
 
     const generateTurnStatus = function(p1, p2){
@@ -274,16 +291,22 @@ const statusManager = (() => {
     const takeTurn = function(){
         if (playerTurn == 1){
             playerTurn = 2;
-            player1.style.visibility = "hidden";
-            player2.style.visibility = "visible";
-
+            styleActivePlayer();
             return 1;
         } else {
             playerTurn = 1;
-            player2.style.visibility = "hidden";
-            player1.style.visibility = "visible";
-
+            styleActivePlayer();
             return 2;
+        }
+    }
+
+    const styleActivePlayer = function(){
+        if (playerTurn == 1){
+            player1.style.visibility = "visible";
+            player2.style.visibility = "hidden";
+        } else {
+            player2.style.visibility = "visible";
+            player1.style.visibility = "hidden";
         }
     }
 
@@ -312,6 +335,7 @@ const statusManager = (() => {
         player1Name,
         player2Name,
         //Functions
+        intializeStatus,
         startGame,
         takeTurn,
         playerWins,
