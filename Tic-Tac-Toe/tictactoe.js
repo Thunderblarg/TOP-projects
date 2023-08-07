@@ -25,6 +25,7 @@ const statusManager = (() => {
     let resetButton;
     let playerTurnContainer;
     let playerTurn;
+    let turnCount;
     let victory;
     let victoryFlag;
     let settingsEnabled;
@@ -50,6 +51,7 @@ const statusManager = (() => {
         player1 = document.getElementById("player1turn");
         player2 = document.getElementById("player2turn");
         playerTurn = 1;
+        turnCount = 0;
 
         player1.style.visibility = "visible";
         player2.style.visibility = "hidden";
@@ -122,12 +124,15 @@ const statusManager = (() => {
         if (playerTurn == 1){
             playerTurn = 2;
             styleActivePlayer();
+            turnCount++;
             return 1;
         } else {
             playerTurn = 1;
             styleActivePlayer();
+            turnCount++;
             return 2;
         }
+        
     }
 
     const styleActivePlayer = function(){
@@ -151,27 +156,29 @@ const statusManager = (() => {
         victoryFlag = true;
     }
 
+    const playerDraw = function(){
+        victory.innerHTML = "Draw!";
+        victory.style.visibility = "visible";
+    }
+
     const checkTurn = () => playerTurn;
 
     const checkVictoryFlag = () => victoryFlag;
 
     const checkSettingsFlag = () => settingsEnabled;
+
+    const getTurnCount = () => turnCount;
     
     return {
-        //Variables
-        settingsEnabled,
-        player1,
-        player2,
-        player1Name,
-        player2Name,
-        //Functions
         intializeStatus,
         startGame,
         takeTurn,
         playerWins,
+        playerDraw,
         checkTurn,
         checkVictoryFlag,
-        checkSettingsFlag
+        checkSettingsFlag,
+        getTurnCount
     }
 })();
 
@@ -214,6 +221,9 @@ const boardManager = (() => {
                             statusManager.takeTurn();
                         }
                     }
+                }
+                if(!checkVictory(this) && statusManager.getTurnCount() == 9){
+                    statusManager.playerDraw();
                 }
             });
         });
