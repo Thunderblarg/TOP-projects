@@ -1,8 +1,12 @@
 {
   "private": true,
   "devDependencies": {
+    "express": "^4.18.2",
+    "html-webpack-plugin": "^5.5.3",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-middleware": "^6.1.1",
+    "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
     "lodash": "^4.17.21"
@@ -11,7 +15,10 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack serve --open",
+    "server": "node server.js"
   },
   "keywords": [],
   "author": "",
