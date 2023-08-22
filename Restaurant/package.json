@@ -1,0 +1,30 @@
+{
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "TOP Restaurant javascript assignment",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+   },
+  "repository": {
+    "type": "git",
+    "url": "yes"
+  },
+  "keywords": [
+    "the",
+    "odin",
+    "project",
+    "restaurant"
+  ],
+  "author": "Josh Alvarado",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
