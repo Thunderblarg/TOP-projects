@@ -5,12 +5,6 @@ import generateContact from './contact';
 
 export default class menuController{
     constructor(){
-        this.currentPage = "Home";
-        this.menuItems = [
-            "Home",
-            "Menu",
-            "Contact",
-        ];
     }
 
     generateMenuBar(){
@@ -36,76 +30,51 @@ export default class menuController{
     }
 
     attachEventHandlers(){        
+
+        let menuItems = [
+            {
+                name: "Home",
+                method: generateHome()
+            },
+            {
+                name: "Menu",
+                method: generateMenu()
+            },
+            {
+                name: "Contact",
+                method: generateContact()
+            },
+        ];
+
         // clicks
-        document.getElementById("Home").addEventListener("click", function(event){
-            let homePage = document.getElementsByClassName("pageContainer")[0];
-            if (homePage.firstChild.id != "Home") {
-                homePage.innerHTML = "";
-                homePage.appendChild(generateHome());
-                anime({
-                    targets: homePage.firstChild,
-                    opacity: 1,
-                    translateX: [-600, 0],
-                    duration: 325,
-                });
-            } else {
-                anime({
-                    targets: event.currentTarget,
-                    fontSize: ['44px', "36px"],
-                    color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
-                    easing: "spring"
-                });
-            }
+        menuItems.forEach((item) =>{
+            document.getElementById(item.name).addEventListener("click", function(event){
+                let homePage = document.getElementsByClassName("pageContainer")[0];
+                if (homePage.firstChild.id != item.name) {
+                    homePage.innerHTML = "";
+                    homePage.appendChild(item.method);
+                    anime({
+                        targets: homePage.firstChild,
+                        opacity: 1,
+                        translateX: [-600, 0],
+                        duration: 325,
+                    });
+                } else {
+                    anime({
+                        targets: event.currentTarget,
+                        fontSize: ['44px', "36px"],
+                        color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
+                        easing: "spring"
+                    });
+                }
+            });
         });
 
-        document.getElementById("Menu").addEventListener("click", function(event){
-            let menuPage = document.getElementsByClassName("pageContainer")[0];
-            if (menuPage.firstChild.id != "Menu") {                
-                menuPage.innerHTML = "";
-                menuPage.appendChild(generateMenu());
-                anime({
-                    targets: menuPage.firstChild,
-                    opacity: 1,
-                    translateX: [-600, 0],
-                    duration: 325,
-                });
-            } else {
-                anime({
-                    targets: event.currentTarget,
-                    fontSize: ['44px', "36px"],
-                    color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
-                    easing: "spring"
-                });
-            }
-        });
-
-        document.getElementById("Contact").addEventListener("click", function(event){
-            let contactPage = document.getElementsByClassName("pageContainer")[0];
-            if (contactPage.firstChild.id != "Contact") {                
-                contactPage.innerHTML = "";
-                contactPage.appendChild(generateContact());
-                anime({
-                    targets: contactPage.firstChild,
-                    opacity: 1,
-                    translateX: [-600, 0],
-                    duration: 325,
-                });
-            } else {
-                anime({
-                    targets: event.currentTarget,
-                    fontSize: ['44px', "36px"],
-                    color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
-                    easing: "spring"
-                });
-            }
-        });
-
-        this.menuItems.forEach((item) => {
-            console.log("65 " + item);
-            let theItem = document.getElementById(item);
+        // hovers
+        menuItems.forEach((item) => {
+            let theItem = document.getElementById(item.name);
 
             theItem.addEventListener("mouseover", function(event){
-                console.log("mouseOver " + item);
                 anime({
                     targets: theItem,
                     color: "rgb(168, 149, 3)",
@@ -117,7 +86,6 @@ export default class menuController{
             });
 
             theItem.addEventListener("mouseout", function(){
-                console.log("mouseOver " + item);
                 anime({
                     targets: theItem,
                     color: "rgb(255, 255, 255)",                    
