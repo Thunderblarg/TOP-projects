@@ -34,6 +34,7 @@ function generateMenu(){
     
     let menu = document.createElement('div');
     menu.classList.add("menu");
+    menu.id = "Menu";
 
     let shoveOver = false;
     dishes.forEach((dish) =>{

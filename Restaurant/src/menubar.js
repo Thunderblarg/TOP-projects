@@ -27,7 +27,7 @@ export default class menuController{
             let newElement = document.createElement("div");
             newElement.innerHTML = item;
             newElement.classList.add("menuItem");
-            newElement.classList.add("menuItem:hover");
+            newElement.classList.add("no-highlight");
             newElement.id = item;
             menuBar.appendChild(newElement);
         });
@@ -37,43 +37,72 @@ export default class menuController{
 
     attachEventHandlers(){        
         // clicks
-        document.getElementById("Home").addEventListener("click", function(){
-            if (this.currentPage != "Home") {
-                document.getElementsByClassName("pageContainer")[0].innerHTML = "";
-                document.getElementsByClassName("pageContainer")[0].appendChild(generateHome());
+        document.getElementById("Home").addEventListener("click", function(event){
+            let homePage = document.getElementsByClassName("pageContainer")[0];
+            if (homePage.firstChild.id != "Home") {
+                homePage.innerHTML = "";
+                homePage.appendChild(generateHome());
+                anime({
+                    targets: homePage.firstChild,
+                    opacity: 1,
+                    translateX: [-600, 0],
+                    duration: 325,
+                });
+            } else {
+                anime({
+                    targets: event.currentTarget,
+                    fontSize: ['44px', "36px"],
+                    color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
+                    easing: "spring"
+                });
             }
         });
 
-        document.getElementById("Menu").addEventListener("click", function(){
-            if (this.currentPage != "Menu") {
-                document.getElementsByClassName("pageContainer")[0].innerHTML = "";
-                document.getElementsByClassName("pageContainer")[0].appendChild(generateMenu());
+        document.getElementById("Menu").addEventListener("click", function(event){
+            let menuPage = document.getElementsByClassName("pageContainer")[0];
+            if (menuPage.firstChild.id != "Menu") {                
+                menuPage.innerHTML = "";
+                menuPage.appendChild(generateMenu());
+                anime({
+                    targets: menuPage.firstChild,
+                    opacity: 1,
+                    translateX: [-600, 0],
+                    duration: 325,
+                });
+            } else {
+                anime({
+                    targets: event.currentTarget,
+                    fontSize: ['44px', "36px"],
+                    color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
+                    easing: "spring"
+                });
             }
         });
 
-        document.getElementById("Contact").addEventListener("click", function(){
-            if (this.currentPage != "Contact") {
-                document.getElementsByClassName("pageContainer")[0].innerHTML = "";
-                document.getElementsByClassName("pageContainer")[0].appendChild(generateContact());
+        document.getElementById("Contact").addEventListener("click", function(event){
+            let contactPage = document.getElementsByClassName("pageContainer")[0];
+            if (contactPage.firstChild.id != "Contact") {                
+                contactPage.innerHTML = "";
+                contactPage.appendChild(generateContact());
+                anime({
+                    targets: contactPage.firstChild,
+                    opacity: 1,
+                    translateX: [-600, 0],
+                    duration: 325,
+                });
+            } else {
+                anime({
+                    targets: event.currentTarget,
+                    fontSize: ['44px', "36px"],
+                    color: ["rgb(195, 40, 40)", "rgb(168, 149, 3)"],
+                    easing: "spring"
+                });
             }
         });
-
-        // hovers
-        
 
         this.menuItems.forEach((item) => {
             console.log("65 " + item);
             let theItem = document.getElementById(item);
-            // let hoverAnimation = anime({
-            //     autoplay: false,
-            //     targets: theItem,
-            //     background: ['radial-gradient(circle, rgba(2,37,219,0.4) 0%, rgba(9,9,121,0)   0%',
-            //                  'radial-gradient(circle, rgba(2,37,219,0.4) 0%, rgba(9,9,121,0)  50%',
-            //                  'radial-gradient(circle, rgba(2,37,219,0.4) 0%, rgba(9,9,121,0)   0%'],
-            //     easing: "easeInOutQuad",
-            //     duration: 1.5,
-            //     loop: true
-            // });
 
             theItem.addEventListener("mouseover", function(event){
                 console.log("mouseOver " + item);

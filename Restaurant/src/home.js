@@ -7,7 +7,7 @@ import {
 function generateHome(){
     let home = document.createElement('div');
     home.classList.add("homePadding");
-    //add class later
+    home.id = "Home";
     home.appendChild(generateBanner());
     home.appendChild(generateOpening());
     home.appendChild(generateHours());

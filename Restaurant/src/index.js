@@ -3,6 +3,7 @@ import './style.css';
 import MenuBarController from './menubar';
 import { generatePageContainer } from './homecontent';
 import generateHome from './home';
+import anime from 'animejs';
 
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -22,4 +23,10 @@ document.addEventListener('DOMContentLoaded', function(){
     container.classList.add("pageContainer");
     content.appendChild(container);
     container.appendChild(generateHome());
+    anime({
+        targets: container.firstChild,
+        opacity: 1,
+        translateX: [-600, 0],
+        easing: 'spring',
+    });
 });
