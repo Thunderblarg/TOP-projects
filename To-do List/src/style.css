@@ -1,0 +1,80 @@
+.body {
+    background: rgb(156,26,215);
+    background: linear-gradient(311deg, rgba(156,26,215,1) 0%, rgba(82,28,209,1) 78%, rgba(186,106,238,1) 100%);
+}
+
+.pageContainer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.toDoPanel {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #f6f2ff;
+    border-style: none;
+    border-radius: 32px;
+    width: clamp(750px, 70vw, 1200px);
+    height: clamp(450px, 70vh, 1050px); 
+    padding: 36px;
+}
+
+.projectPanel {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: clamp(200px, 23.5%, 450px);
+    height: auto;
+    border-right: 2px;
+    border-right-style: solid;
+}
+
+.toDoCategory{
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 12px;
+}
+
+.projectDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    width: 100%;
+}
+
+.itemContainer {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 14px;
+}
+
+.itemContent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 24px;
+}
+
+.itemTitle {
+    font-size: 20px;
+}
+
+.itemDescription {
+    font-size: 10px;
+    width: 50%;
+}
+
+.itemControls {
+    display: flex;
+    flex-direction: row;    
+}
+
+ul {
+    list-style: none;
+    padding-left: 20px;
+}
