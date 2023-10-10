@@ -34,7 +34,7 @@
     border-right-style: solid;
 }
 
-.toDoCategory{
+.toDoCategory {
     font-size: 24px;
     font-weight: bold;
     padding-bottom: 12px;
@@ -45,6 +45,7 @@
     flex-direction: column;
     padding: 24px;
     width: 100%;
+    padding-right: 0px;
 }
 
 .itemContainer {
@@ -64,14 +65,25 @@
     font-size: 20px;
 }
 
-.itemDescription {
+.itemTitle--editing {
+    font-size: 20px;
+}
+
+.completed {
+    color: rgba(0, 0, 0, 0.375)
+}
+
+.itemDetails {
+    display: flex;
+    flex-shrink: 0;
     font-size: 10px;
     width: 50%;
 }
 
 .itemControls {
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
+    height: 20px;
 }
 
 ul {

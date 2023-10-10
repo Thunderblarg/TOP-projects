@@ -4,7 +4,7 @@ export default function(projectName){
     let listName = projectName;
     let toDoList = [];
     const newToDo = function(newTitle,
-                             newDescription,
+                             newDetails,
                              newCreatedDate, 
                              newDueDate, 
                              newPriority){
@@ -13,13 +13,15 @@ export default function(projectName){
         let dueDate = newDueDate;
 
         toDoList.push(toDoItem(newTitle,
-                               newDescription,
+                               newDetails,
                                newDate, 
                                dueDate, 
                                newPriority));
     }
 
     const allToDos = () => toDoList;
+
+    const getToDo = (idx) => toDoList[idx];
 
     const deleteToDo = function(idx){
         toDoList[idx].deleteItem(toDoList);
@@ -29,8 +31,8 @@ export default function(projectName){
         toDoList[idx].updateTitle(newTitle);
     }
 
-    const updateDescription = function(idx, newDescription){
-        toDoList[idx].updateDescription(newDescription);
+    const updateDetails = function(idx, newDetails){
+        toDoList[idx].updateDetails(newDetails);
     }
 
     const updateTaskDate = function(idx, newDate){
@@ -39,12 +41,12 @@ export default function(projectName){
 
     return {
         listName,
-        toDoList,
         newToDo,
         allToDos,
+        getToDo,
         deleteToDo,
         updateTitle,
-        updateDescription,
+        updateDetails,
         updateTaskDate
     }
 }

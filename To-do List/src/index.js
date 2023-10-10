@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
     let body = document.getElementsByTagName("body")[0];
     body.classList.add("body");
-    console.log(body);
+    //console.log(body);
 
     let container = document.createElement('div');
     container.classList.add("pageContainer");
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
     controller.generateToDoCategories(categoryList);
 
-    controller.generateToDoItems(categoryList[0].allToDos());
+    controller.generateToDoItems(categoryList[0]);
 });
 
 console.log("Hello wrrld");

@@ -1,4 +1,4 @@
-export default function(newTitle, newDescription, newCreatedDate, newDueDate, newPriority){    
+export default function(newTitle, newDetails, newCreatedDate, newDueDate, newPriority){    
     function deleteItem(containerList){
         const delIdx = containerList.indexOf(this);
 
@@ -13,8 +13,8 @@ export default function(newTitle, newDescription, newCreatedDate, newDueDate, ne
         this.title = updatedTitle;
     }
 
-    function updateDescription(updatedDescription){
-        this.description = updatedDescription;
+    function updateDetails(updatedDetails){
+        this.details = updatedDetails;
     }
 
     function updateDueDate(newDate){
@@ -23,7 +23,7 @@ export default function(newTitle, newDescription, newCreatedDate, newDueDate, ne
     
     return {
         title : newTitle,
-        description : newDescription,
+        details : newDetails,
         createdDate : newCreatedDate,
         dueDate : newDueDate,
         priority : newPriority,
@@ -31,7 +31,7 @@ export default function(newTitle, newDescription, newCreatedDate, newDueDate, ne
         deleteItem,
         toggleCompleted,
         updateTitle,
-        updateDescription,
+        updateDetails,
         updateDueDate
     }
 }
