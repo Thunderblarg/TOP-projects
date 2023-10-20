@@ -39,6 +39,10 @@ export default function(projectName){
         toDoList[idx].updateDueDate(newDate);
     }
 
+    const toggleComplete = function(idx){
+        toDoList[idx].toggleCompleted();
+    }
+
     return {
         listName,
         newToDo,
@@ -47,6 +51,7 @@ export default function(projectName){
         deleteToDo,
         updateTitle,
         updateDetails,
-        updateTaskDate
+        updateTaskDate,
+        toggleComplete
     }
 }

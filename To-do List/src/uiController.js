@@ -33,6 +33,21 @@ export default function(){
             newCat.innerHTML = element.listName;
             container.appendChild(newCat);
         });
+
+        attachCatClickHandlers(Array.from(container.children), categoryList);
+
+    }
+
+    function attachCatClickHandlers(elementList, catList){
+        elementList.forEach((cat) => {
+
+            // console.log(cat);
+            cat.addEventListener('click', function(event){
+                let categories = Array.from(cat.parentElement.children);
+                let catIndex = categories.indexOf(cat);                
+                generateToDoItems(catList[catIndex]);
+            });
+        });
     }
 
     function generateSingleToDoItem(item){
@@ -70,6 +85,7 @@ export default function(){
 
         let deleteButton = new Image();
         deleteButton.src = trashCan;
+        attachDeleteClickHandlers(deleteButton);
         controls.appendChild(deleteButton);
 
         itemControls.appendChild(checkbox);
@@ -85,55 +101,52 @@ export default function(){
     function generateToDoItems(category){
         parentList = category;
         let container = document.getElementsByClassName("projectDetails")[0];
-        //container.classList.add()
 
         container.innerHTML = "";
 
         category.allToDos().forEach(item => {
-
-            container.appendChild(generateSingleToDoItem(item));
-        
+            container.appendChild(generateSingleToDoItem(item));        
         });
     }
     
     function attachTitleClickHandlers(element){
         element.addEventListener("click", function(event){
-            event.stopPropagation();
+            event.stopPropagation();                   
 
-            let itemText = element.innerHTML;
-            // element.innerHTML = "";
-            let parent = element.parentElement;
-            
+            let itemIndex = getElementIndex(this);
 
-            let textField = document.createElement('input');
-            textField.classList.add("itemTitle--editing");
-            textField.type = "text";
-            textField.value = itemText;            
-            
-            parent.removeChild(parent.children[0]);
-            parent.prepend(textField);
-            textField.focus();
 
-            textField.addEventListener("blur", function(event){
-                event.stopPropagation();                    
+            if(!(parentList.getToDo(itemIndex).completed)){
+                let itemText = element.innerHTML;
+                // element.innerHTML = "";
+                let parent = element.parentElement;
+                
 
-                // honestly i'm just going to consolidate these
-                let labelContainer = parent.parentElement;
-                let siblingList = Array.from(labelContainer.parentElement.children);
-                let itemIndex = siblingList.indexOf(labelContainer);
+                let textField = document.createElement('input');
+                textField.classList.add("itemTitle--editing");
+                textField.type = "text";
+                textField.value = itemText;            
+                
+                parent.removeChild(this);
+                parent.prepend(textField);
+                textField.focus();
 
-                let newTitle = this.value;
-                parentList.updateTitle(itemIndex, newTitle);
+                textField.addEventListener("blur", function(event){
+                    event.stopPropagation();
 
-                let title = document.createElement('div');
-                title.classList.add('itemTitle');
-                title.innerHTML = parentList.getToDo(itemIndex).title;
-                attachTitleClickHandlers(title);
+                    let newTitle = this.value;
+                    parentList.updateTitle(itemIndex, newTitle);
 
-                parent.removeChild(parent.children[0]);
+                    let title = document.createElement('div');
+                    title.classList.add('itemTitle');
+                    title.innerHTML = parentList.getToDo(itemIndex).title;
+                    attachTitleClickHandlers(title);
 
-                parent.prepend(title);
-            });
+                    parent.removeChild(parent.children[0]);
+
+                    parent.prepend(title);
+                });
+            }
         });
     }
 
@@ -141,56 +154,101 @@ export default function(){
         element.addEventListener("click", function(event){
             event.stopPropagation();
 
-            let itemText = element.innerHTML;
-            // element.innerHTML = "";
+            let itemIndex = getElementIndex(this);
             let parent = element.parentElement;
             
+            if(!(parentList.getToDo(itemIndex).completed)){
+                let itemText = element.innerHTML;
+                let textField = document.createElement('input');
+                textField.classList.add("itemDetails--editing");
+                textField.type = "text";
+                textField.value = itemText;            
+                
+                parent.removeChild(this);
+                parent.appendChild(textField);
+                textField.focus();
 
-            let textField = document.createElement('input');
-            textField.classList.add("itemDetails--editing");
-            textField.type = "text";
-            textField.value = itemText;            
-            
-            parent.removeChild(parent.children[1]);
-            parent.appendChild(textField);
-            textField.focus();
+                textField.addEventListener("blur", function(event){
+                    event.stopPropagation();         
+                    let newDetails = this.value;
+                    parentList.updateDetails(itemIndex, newDetails);
 
-            textField.addEventListener("blur", function(event){
-                event.stopPropagation();                    
+                    let details = document.createElement('div');
+                    details.classList.add('itemDetails');
+                    details.innerHTML = parentList.getToDo(itemIndex).details;
+                    attachDetailsClickHandlers(details);
 
-                // honestly i'm just going to consolidate these
-                let labelContainer = parent.parentElement;
-                let siblingList = Array.from(labelContainer.parentElement.children);
-                let itemIndex = siblingList.indexOf(labelContainer);
+                    parent.removeChild(parent.children[1]);
 
-                let newDetails = this.value;
-                parentList.updateDetails(itemIndex, newDetails);
-
-                let details = document.createElement('div');
-                details.classList.add('itemDetails');
-                details.innerHTML = parentList.getToDo(itemIndex).details;
-                attachDetailsClickHandlers(details);
-
-                parent.removeChild(parent.children[1]);
-
-                parent.appendChild(details);
-            });
+                    parent.appendChild(details);
+                });
+            }
         });
     }
 
     function attachCheckboxClickHandlers(element){
         element.addEventListener("click", function(event){
-            // console.log(this.parentElement.parentElement.children[0].children[0]);
-            // console.log(this.parentElement.parentElement.children[0].children[1]);
+            let parent = element.parentElement;
+            let itemIndex = getElementIndex(element);
+            let checkedBox = new Image();
+            checkedBox.src = checkboxChecked;
+
             this.parentElement.parentElement.children[0].children[0].classList.add('completed');
             this.parentElement.parentElement.children[0].children[1].classList.add('completed');
+            
+            parentList.toggleComplete(itemIndex);
+            
+            checkedBox.addEventListener('click', function(event){
+                let uncheckedBox = new Image();
+                uncheckedBox.src = checkboxUnchecked;
+                attachCheckboxClickHandlers(uncheckedBox);
+
+                this.parentElement.parentElement.children[0].children[0].classList.remove('completed');
+                this.parentElement.parentElement.children[0].children[1].classList.remove('completed');
+
+                parentList.toggleComplete(itemIndex);
+
+                parent.removeChild(checkedBox);
+                parent.prepend(uncheckedBox);                
+            });
+            parent.removeChild(this);
+            parent.prepend(checkedBox);
+
         });
+    }
+
+    function attachDeleteClickHandlers(element){
+        element.addEventListener('click', function(event){
+            let parent = element.parentElement;
+            let itemIndex = getElementIndex(element);
+
+            parentList.deleteToDo(itemIndex);
+            parent.parentElement.parentElement.removeChild(parent.parentElement);
+
+        });
+        
+        
+        
+       // 
+       // parent.parentElement.parentElement.removeChild(element);
+
+    }
+
+    function getElementIndex(element){
+        let parent = element.parentElement;
+
+        let labelContainer = parent.parentElement;
+        let siblingList = Array.from(labelContainer.parentElement.children);
+        let itemIndex = siblingList.indexOf(labelContainer);
+
+        return itemIndex;
     }
 
     return {
         initializeBoard,
         generateToDoCategories,
-        generateToDoItems
+        generateToDoItems,
+        attachCatClickHandlers
     }
 
 };
