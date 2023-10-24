@@ -7,7 +7,13 @@ export default function(){
     let parentList;
 
     function initializeBoard(){
-        let container = document.getElementsByClassName("pageContainer")[0];
+        let container = document.getElementsByClassName("contentContainer")[0];
+
+        let contentControls = document.createElement('div');
+        contentControls.classList.add("contentControls");
+        container.appendChild(contentControls);
+
+        generateAddButtons(contentControls);
 
         let listContainer = document.createElement('div');
         listContainer.classList.add("toDoPanel");
@@ -20,6 +26,19 @@ export default function(){
         let projectDetails = document.createElement('div');
         projectDetails.classList.add("projectDetails");
         listContainer.appendChild(projectDetails);
+    }
+
+    function generateAddButtons(contentControls){    
+        let newToDoList = document.createElement('div');
+        newToDoList.classList.add("addButton");
+        newToDoList.innerHTML = "+";
+        contentControls.appendChild(newToDoList);
+    
+        let newToDoItem = document.createElement('div');
+        newToDoItem.classList.add("addButton");
+        newToDoItem.innerHTML = "+";
+        contentControls.appendChild(newToDoItem);
+
     }
 
     function generateToDoCategories(categoryList){

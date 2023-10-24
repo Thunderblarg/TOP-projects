@@ -9,8 +9,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.contentContainer {
+    display: grid;
+    grid-template-columns: clamp(750px, 70vw, 1200px);
+    grid-template-rows: clamp(450px, 70vh, 1050px); 
+}
+
+.contentControls {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 36px;
+}
+
+.addButton {
+    font-size: 56px;
+    line-height: 40px;
+    padding: 16px;
+    padding-bottom: 24px;
+    background: linear-gradient(311deg, rgba(156,26,215,1) 0%, rgba(82,28,209,1) 78%, rgba(186,106,238,1) 100%);
+    border-radius: 24px;
 }
 
 .toDoPanel {
@@ -19,9 +43,10 @@
     background-color: #f6f2ff;
     border-style: none;
     border-radius: 32px;
-    width: clamp(750px, 70vw, 1200px);
-    height: clamp(450px, 70vh, 1050px); 
     padding: 36px;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    z-index: 1;
 }
 
 .projectPanel {

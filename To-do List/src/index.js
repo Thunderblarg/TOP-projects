@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function (){
     let controller = uiController();
     newDueDate.setDate(newDueDate.getDate() + 1);
 
+    let body = document.getElementsByTagName("body")[0];
+    body.classList.add("body");
+    //console.log(body);
+
     let categoryList = [];
 
     let thisIsAList = toDoList("Garage stuff");
@@ -56,15 +60,13 @@ document.addEventListener('DOMContentLoaded', function (){
 
     categoryList.push(anotherList);
 
-
-
-    let body = document.getElementsByTagName("body")[0];
-    body.classList.add("body");
-    //console.log(body);
-
-    let container = document.createElement('div');
-    container.classList.add("pageContainer");
-    body.appendChild(container);
+    let pageContainer = document.createElement('div');
+    pageContainer.classList.add("pageContainer");
+    body.appendChild(pageContainer);
+    
+    let contentContainer = document.createElement('div');
+    contentContainer.classList.add("contentContainer");
+    pageContainer.appendChild(contentContainer);
 
     controller.initializeBoard();
 
@@ -72,5 +74,3 @@ document.addEventListener('DOMContentLoaded', function (){
 
     controller.generateToDoItems(categoryList[0]);
 });
-
-console.log("Hello wrrld");
