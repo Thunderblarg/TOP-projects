@@ -77,13 +77,6 @@ export default function(){
         
         let container = document.getElementsByClassName("contentContainer")[0];
 
-        // i'm so fucking mad about this
-        // let contentControls = document.createElement('div');
-        // contentControls.classList.add("contentControls");
-        // container.appendChild(contentControls);
-
-        
-
         let listContainer = document.createElement('div');
         listContainer.classList.add("toDoPanel");
         container.appendChild(listContainer);
@@ -101,9 +94,6 @@ export default function(){
         generateToDoItems(categoryList[0]);
 
         generateAddButtons();
-        // attachClickHandlers();
-
-
     }
 
     function generateAddButtons(contentControls){    
@@ -122,17 +112,6 @@ export default function(){
         let projectDetails = document.getElementsByClassName("projectDetails");
         console.log(projectDetails[0]);
         projectDetails[0].appendChild(newToDo);
-        // newToDoList.classList.add("addButton");
-        // newToDoList.innerHTML = "+";
-        // contentControls.appendChild(newToDoList);
-    
-        // let newToDoItem = document.createElement('div');
-        // newToDoItem.classList.add("addButton");
-        // newToDoItem.innerHTML = "+";
-        // contentControls.appendChild(newToDoItem);
-
-        // attachAddButtonClickHandlers();
-
     }
 
     function generateToDoCategories(){
@@ -153,8 +132,6 @@ export default function(){
 
     function attachCatClickHandlers(elementList, catList){
         elementList.forEach((cat) => {
-
-            // console.log(cat);
             cat.addEventListener('click', function(event){
                 let categories = Array.from(cat.parentElement.children);
                 let catIndex = categories.indexOf(cat);                
@@ -164,8 +141,6 @@ export default function(){
     }
 
     function generateSingleToDoItem(item){
-        // let container = document.getElementsByClassName("projectDetails")[0];
-
         let newItem = document.createElement('div');
         newItem.classList.add('itemContainer');
 
@@ -207,7 +182,6 @@ export default function(){
 
         newItem.appendChild(itemControls);        
         
-        // container.appendChild(newItem);
         return newItem;
     }
 
@@ -220,83 +194,44 @@ export default function(){
         category.allToDos().forEach(item => {
             container.appendChild(generateSingleToDoItem(item));        
         });
-    }
-
-    // no longer needed
-    // function attachClickHandlers(){
-    //     let noteTitles = document.getElementsByClassName("itemTitle"); 
-
-    //     for (let idx = 0; idx < noteTitles.length; idx++){
-    //         let foo = noteTitles[idx];
-    //         attachTitleClickHandlers(foo);
-    //     }
-    // }
-        // for (let idx = 0; idx < noteTitles.length; idx++){
-        //     console.log(noteTitles[idx]);
-        //     // attachTitleClickHandlers(noteTitles[idx]);
-        // }
-        
-        // noteTitles.forEach((title) => {
-        //     console.log(title);
-        //     attachTitleClickHandlers(title);
-        // });
-
-
-        
-    
+    }    
     
     function attachTitleClickHandlers(element){
-        // let noteTitles = document.getElementsByClassName("itemTitle"); 
+        element.addEventListener("click", function(event){
+            console.log("inner event");
 
-        // for (let idx = 0; idx < noteTitles.length; idx++){
-        //     let foo = noteTitles[idx];
-        //     attachTitleClickHandlers(foo);
-        // }
+            let itemIndex = getElementIndex(element);
+            if(!(parentList.getToDo(itemIndex).completed)){
+                let itemText = element.innerHTML;
+                let parent = element.parentElement;
+                
 
-        // console.log(element);
-        // console.log(noteTitles);
-        // let idx;
-        // for (idx = 0; idx < noteTitles.length; idx++){
-            // console.log(idx);
-            // let element = noteTitles[idx];
-            element.addEventListener("click", function(event){
-                //event.stopPropagation();     
-                console.log("inner event");
+                let textField = document.createElement('input');
+                textField.classList.add("itemTitle--editing");
+                textField.type = "text";
+                textField.value = itemText;            
+                
+                parent.removeChild(this);
+                parent.prepend(textField);
+                textField.focus();
 
-                let itemIndex = getElementIndex(element);
-                if(!(parentList.getToDo(itemIndex).completed)){
-                    let itemText = element.innerHTML;
-                    // element.innerHTML = "";
-                    let parent = element.parentElement;
-                    
+                textField.addEventListener("blur", function(event){
+                    event.stopPropagation();
 
-                    let textField = document.createElement('input');
-                    textField.classList.add("itemTitle--editing");
-                    textField.type = "text";
-                    textField.value = itemText;            
-                    
-                    parent.removeChild(this);
-                    parent.prepend(textField);
-                    textField.focus();
+                    let newTitle = this.value;
+                    parentList.updateTitle(itemIndex, newTitle);
 
-                    textField.addEventListener("blur", function(event){
-                        event.stopPropagation();
+                    let title = document.createElement('div');
+                    title.classList.add('itemTitle');
+                    title.innerHTML = parentList.getToDo(itemIndex).title;
+                    attachTitleClickHandlers(title);
 
-                        let newTitle = this.value;
-                        parentList.updateTitle(itemIndex, newTitle);
+                    parent.removeChild(parent.children[0]);
 
-                        let title = document.createElement('div');
-                        title.classList.add('itemTitle');
-                        title.innerHTML = parentList.getToDo(itemIndex).title;
-                        attachTitleClickHandlers(title);
-
-                        parent.removeChild(parent.children[0]);
-
-                        parent.prepend(title);
-                    });
-                }
-            });
-        // }
+                    parent.prepend(title);
+                });
+            }
+        });
     }
 
     function attachDetailsClickHandlers(element){
@@ -375,12 +310,6 @@ export default function(){
             parent.parentElement.parentElement.removeChild(parent.parentElement);
 
         });
-        
-        
-        
-       // 
-       // parent.parentElement.parentElement.removeChild(element);
-
     }
 
     function getElementIndex(element){
