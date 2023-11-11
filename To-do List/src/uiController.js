@@ -3,6 +3,7 @@ import toDoList from "./toDoList";
 import checkboxChecked from "./img/checkbox-check.svg";
 import checkboxUnchecked from "./img/checkbox-unchecked.svg";
 import trashCan from "./img/trashcan.svg";
+import plusButton from "./img/plus.svg";
 
 export default function(){
     let parentList;
@@ -81,7 +82,7 @@ export default function(){
         // contentControls.classList.add("contentControls");
         // container.appendChild(contentControls);
 
-        // generateAddButtons(contentControls);
+        
 
         let listContainer = document.createElement('div');
         listContainer.classList.add("toDoPanel");
@@ -99,23 +100,38 @@ export default function(){
 
         generateToDoItems(categoryList[0]);
 
-        attachClickHandlers();
+        generateAddButtons();
+        // attachClickHandlers();
 
 
     }
 
     function generateAddButtons(contentControls){    
-        let newToDoList = document.createElement('div');
+        let newToDoList = new Image();
+        newToDoList.src = plusButton;
         newToDoList.classList.add("addButton");
-        newToDoList.innerHTML = "+";
-        contentControls.appendChild(newToDoList);
-    
-        let newToDoItem = document.createElement('div');
-        newToDoItem.classList.add("addButton");
-        newToDoItem.innerHTML = "+";
-        contentControls.appendChild(newToDoItem);
 
-        attachAddButtonClickHandlers();
+        let newToDo = new Image();
+        newToDo.src = plusButton;
+        newToDo.classList.add("addButton");
+
+        let projectPanel = document.getElementsByClassName("projectPanel");
+        console.log(projectPanel[0]);
+        projectPanel[0].appendChild(newToDoList);
+
+        let projectDetails = document.getElementsByClassName("projectDetails");
+        console.log(projectDetails[0]);
+        projectDetails[0].appendChild(newToDo);
+        // newToDoList.classList.add("addButton");
+        // newToDoList.innerHTML = "+";
+        // contentControls.appendChild(newToDoList);
+    
+        // let newToDoItem = document.createElement('div');
+        // newToDoItem.classList.add("addButton");
+        // newToDoItem.innerHTML = "+";
+        // contentControls.appendChild(newToDoItem);
+
+        // attachAddButtonClickHandlers();
 
     }
 
@@ -148,7 +164,7 @@ export default function(){
     }
 
     function generateSingleToDoItem(item){
-        let container = document.getElementsByClassName("projectDetails")[0];
+        // let container = document.getElementsByClassName("projectDetails")[0];
 
         let newItem = document.createElement('div');
         newItem.classList.add('itemContainer');
@@ -160,12 +176,12 @@ export default function(){
         title.classList.add('itemTitle');
         title.innerHTML = item.title;
         itemContent.appendChild(title);
-        // attachTitleClickHandlers(title);
+        attachTitleClickHandlers(title);
 
         let details = document.createElement('div');
         details.classList.add('itemDetails');
         details.innerHTML = item.details;
-        // attachDetailsClickHandlers(details);
+        attachDetailsClickHandlers(details);
         itemContent.appendChild(details);
 
         newItem.appendChild(itemContent);
@@ -177,12 +193,12 @@ export default function(){
         
         let checkbox = new Image();
         checkbox.src = checkboxUnchecked;
-        // attachCheckboxClickHandlers(checkbox);
+        attachCheckboxClickHandlers(checkbox);
         controls.appendChild(checkbox);
 
         let deleteButton = new Image();
         deleteButton.src = trashCan;
-        // attachDeleteClickHandlers(deleteButton);
+        attachDeleteClickHandlers(deleteButton);
         controls.appendChild(deleteButton);
 
         itemControls.appendChild(checkbox);
@@ -206,14 +222,15 @@ export default function(){
         });
     }
 
-    function attachClickHandlers(){
-        let noteTitles = document.getElementsByClassName("itemTitle"); 
+    // no longer needed
+    // function attachClickHandlers(){
+    //     let noteTitles = document.getElementsByClassName("itemTitle"); 
 
-        for (let idx = 0; idx < noteTitles.length; idx++){
-            let foo = noteTitles[idx];
-            attachTitleClickHandlers(foo);
-        }
-    }
+    //     for (let idx = 0; idx < noteTitles.length; idx++){
+    //         let foo = noteTitles[idx];
+    //         attachTitleClickHandlers(foo);
+    //     }
+    // }
         // for (let idx = 0; idx < noteTitles.length; idx++){
         //     console.log(noteTitles[idx]);
         //     // attachTitleClickHandlers(noteTitles[idx]);

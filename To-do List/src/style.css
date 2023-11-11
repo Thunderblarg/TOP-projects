@@ -29,12 +29,11 @@
 }
 
 .addButton {
-    font-size: 56px;
-    line-height: 40px;
-    padding: 16px;
-    padding-bottom: 24px;
-    background: linear-gradient(311deg, rgba(156,26,215,1) 0%, rgba(82,28,209,1) 78%, rgba(186,106,238,1) 100%);
-    border-radius: 24px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    padding: 4px;
+    height: 20px;
+    align-self: flex-start;
 }
 
 .toDoPanel {
