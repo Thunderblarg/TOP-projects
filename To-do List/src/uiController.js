@@ -347,6 +347,9 @@ export default function(){
                     categoryList.push(newList);
                     generateToDoCategories();
                     generateToDoItems(categoryList[categoryList.indexOf(newList)]);
+                } else {
+                    newToDoName.remove();
+                    generateAddListButton();
                 }
             });
         });
@@ -358,27 +361,15 @@ export default function(){
             this.replaceWith(newToDoItemName);
             newToDoItemName.focus();
             
-            newToDoItemName.addEventListener('blur', function(event){
-                // let createdDate = new Date();
-                // let newDueDate = new Date(createdDate);
-                // newDueDate.setDate(newDueDate.getDate() + 1);
-                                
+            newToDoItemName.addEventListener('blur', function(event){                
                 if(newToDoItemName.value){
                     parentList.newToDo(
                         newToDoItemName.value,
                         newToDoItemName.value
                     );
                     this.replaceWith(generateSingleToDoItem(parentList.getToDo(parentList.length() - 1)));
-                    // offset parentlist length by -1
-                    console.log(parentList.getToDo(parentList.length() - 1).details);
-                    // let newListItem = toDoList(newToDoItemName.value);
-                    // categoryList.push(newList);
-                    // generateToDoCategories();
-                    // generateToDoItems(categoryList[categoryList.indexOf(newList)]);
+                    generateAddListItemButton();
                 }
-                // console.log(parentList.getToDo(parentList.length()));
-                // console.log(generateSingleToDoItem(parentList.getToDo(parentList.length)));
-                // this.replaceWith(generateSingleToDoItem(parentList.getToDo(parentList.length)));
             });
         });
     }
