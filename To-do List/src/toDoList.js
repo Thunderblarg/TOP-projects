@@ -4,19 +4,12 @@ export default function(projectName){
     let listName = projectName;
     let toDoList = [];
     const newToDo = function(newTitle,
-                             newDetails,
-                             newCreatedDate, 
-                             newDueDate, 
-                             newPriority){
-        
-        let newDate = newCreatedDate;
-        let dueDate = newDueDate;
+                             newDetails){        
+        // let newDate = newCreatedDate;
+        // let dueDate = newDueDate;
 
-        toDoList.push(toDoItem(newTitle,
-                               newDetails,
-                               newDate, 
-                               dueDate, 
-                               newPriority));
+        console.log(toDoList.push(toDoItem(newTitle,
+                               newDetails)));
     }
 
     const allToDos = () => toDoList;
@@ -35,13 +28,15 @@ export default function(projectName){
         toDoList[idx].updateDetails(newDetails);
     }
 
-    const updateTaskDate = function(idx, newDate){
-        toDoList[idx].updateDueDate(newDate);
-    }
+    // const updateTaskDate = function(idx, newDate){
+    //     toDoList[idx].updateDueDate(newDate);
+    // }
 
     const toggleComplete = function(idx){
         toDoList[idx].toggleCompleted();
     }
+
+    const length = () => toDoList.length;
 
     return {
         listName,
@@ -51,7 +46,8 @@ export default function(projectName){
         deleteToDo,
         updateTitle,
         updateDetails,
-        updateTaskDate,
-        toggleComplete
+        // updateTaskDate,
+        toggleComplete,
+        length
     }
 }

@@ -17,23 +17,25 @@ export default function(){
         let thisIsAList = toDoList("Garage stuff");
 
         thisIsAList.newToDo("get into garage",
-                            "walk your stupid ass into the garage",
-                            createdDate,
-                            newDueDate,
-                            "High");
+                            "walk your stupid ass into the garage" // ,
+                            // createdDate,
+                            // newDueDate,
+                            // "High"
+        );
     
         thisIsAList.newToDo("load truck",
-                            "load up the truck with as much shit as possible and run it to the dump",
-                            createdDate,
-                            newDueDate,
-                            "High"
+                            "load up the truck with as much shit as possible and run it to the dump" // ,
+                            // createdDate,
+                            // newDueDate,
+                            // "High"
         );
     
         thisIsAList.newToDo("sand chair",
-                            "get alia's chair sanded so she can refinish it",
-                            createdDate,
-                            newDueDate,
-                            "Medium");
+                            "get alia's chair sanded so she can refinish it" // ,
+                            // createdDate,
+                            // newDueDate,
+                            // "Medium"
+        );
     
         categoryList.push(thisIsAList);
     
@@ -41,22 +43,25 @@ export default function(){
         let anotherList = toDoList("Crafting shit");
     
         anotherList.newToDo("work on harness",
-                            "start working on the titty harness for jack",
-                            createdDate,
-                            newDueDate,
-                            "High");
+                            "start working on the titty harness for jack" // ,
+                            // createdDate,
+                            // newDueDate,
+                            // "Medium"
+        );
     
         anotherList.newToDo("finish staining chair",
-                            "get the stain put on the chair so it's done being blackened",
-                            createdDate,
-                            newDueDate,
-                            "Medium");
+                            "get the stain put on the chair so it's done being blackened" // ,
+                            // createdDate,
+                            // newDueDate,
+                            // "Medium"
+        );
     
         anotherList.newToDo("finish viking chairs",
-                            "finish viking chairs so they're ready to sell",
-                            createdDate,
-                            newDueDate,
-                            "Medium");
+                            "finish viking chairs so they're ready to sell" // ,
+                            // createdDate,
+                            // newDueDate,
+                            // "Medium"
+        );
     
         categoryList.push(anotherList);
     };
@@ -92,26 +97,6 @@ export default function(){
         generateToDoCategories();
 
         generateToDoItems(categoryList[0]);
-
-        generateAddButtons();
-    }
-
-    function generateAddButtons(contentControls){    
-        let newToDoList = new Image();
-        newToDoList.src = plusButton;
-        newToDoList.classList.add("addButton");
-
-        let newToDo = new Image();
-        newToDo.src = plusButton;
-        newToDo.classList.add("addButton");
-
-        let projectPanel = document.getElementsByClassName("projectPanel");
-        console.log(projectPanel[0]);
-        projectPanel[0].appendChild(newToDoList);
-
-        let projectDetails = document.getElementsByClassName("projectDetails");
-        console.log(projectDetails[0]);
-        projectDetails[0].appendChild(newToDo);
     }
 
     function generateToDoCategories(){
@@ -128,6 +113,7 @@ export default function(){
 
         attachCatClickHandlers(Array.from(container.children), categoryList);
 
+        generateAddListButton();
     }
 
     function attachCatClickHandlers(elementList, catList){
@@ -194,7 +180,33 @@ export default function(){
         category.allToDos().forEach(item => {
             container.appendChild(generateSingleToDoItem(item));        
         });
-    }    
+
+        generateAddListItemButton()
+    }
+    
+    function generateAddListButton(){
+        let newToDoList = new Image();
+        newToDoList.src = plusButton;
+        newToDoList.classList.add("addButton");
+
+        let projectPanel = document.getElementsByClassName("projectPanel");
+        console.log(projectPanel[0]);
+        projectPanel[0].appendChild(newToDoList);
+
+        attachAddListClickHandlers(newToDoList);
+    }
+
+    function generateAddListItemButton(){
+        let newToDo = new Image();
+        newToDo.src = plusButton;
+        newToDo.classList.add("addButton");
+
+        let projectDetails = document.getElementsByClassName("projectDetails");
+        console.log(projectDetails[0]);
+        projectDetails[0].appendChild(newToDo);
+
+        attachAddListItemClickHandlers(newToDo);
+    }
     
     function attachTitleClickHandlers(element){
         element.addEventListener("click", function(event){
@@ -314,7 +326,6 @@ export default function(){
 
     function getElementIndex(element){
         let parent = element.parentElement;
-        console.log(parent.parentElement);
         let labelContainer = parent.parentElement;
         let siblingList = Array.from(labelContainer.parentElement.children);
         let itemIndex = siblingList.indexOf(labelContainer);
@@ -323,18 +334,57 @@ export default function(){
         return itemIndex;
     }
 
-    function attachAddButtonClickHandlers(){
-        let buttons = document.getElementsByClassName("addButton");
-        buttons[0].addEventListener('click', function(){
+    function attachAddListClickHandlers(element){
+        element.addEventListener('click', function(){
+            let newToDoName = document.createElement('input');
+            this.replaceWith(newToDoName);
+            newToDoName.focus();
+            
+            newToDoName.addEventListener('blur', function(event){
+                console.log("335");
+                if(newToDoName.value){
+                    let newList = toDoList(newToDoName.value);
+                    categoryList.push(newList);
+                    generateToDoCategories();
+                    generateToDoItems(categoryList[categoryList.indexOf(newList)]);
+                }
+            });
+        });
+    }
 
+    function attachAddListItemClickHandlers(element){
+        element.addEventListener('click', function(){
+            let newToDoItemName = document.createElement('input');
+            this.replaceWith(newToDoItemName);
+            newToDoItemName.focus();
+            
+            newToDoItemName.addEventListener('blur', function(event){
+                // let createdDate = new Date();
+                // let newDueDate = new Date(createdDate);
+                // newDueDate.setDate(newDueDate.getDate() + 1);
+                                
+                if(newToDoItemName.value){
+                    parentList.newToDo(
+                        newToDoItemName.value,
+                        newToDoItemName.value
+                    );
+                    this.replaceWith(generateSingleToDoItem(parentList.getToDo(parentList.length() - 1)));
+                    // offset parentlist length by -1
+                    console.log(parentList.getToDo(parentList.length() - 1).details);
+                    // let newListItem = toDoList(newToDoItemName.value);
+                    // categoryList.push(newList);
+                    // generateToDoCategories();
+                    // generateToDoItems(categoryList[categoryList.indexOf(newList)]);
+                }
+                // console.log(parentList.getToDo(parentList.length()));
+                // console.log(generateSingleToDoItem(parentList.getToDo(parentList.length)));
+                // this.replaceWith(generateSingleToDoItem(parentList.getToDo(parentList.length)));
+            });
         });
     }
 
     return {
-        initializeBoard,
-        generateToDoCategories,
-        generateToDoItems,
-        attachCatClickHandlers
+        initializeBoard
     }
 
 };
