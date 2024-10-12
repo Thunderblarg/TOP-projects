@@ -36,6 +36,11 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.(webp)$/i,
+        loader: 'webp-loader',
+        type: 'asset/resource',
+      },
     ],
   },
 };

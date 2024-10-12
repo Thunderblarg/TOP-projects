@@ -1,0 +1,70 @@
+.bodyOverride {
+    margin: 0px;
+}
+
+.horizontalContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.xMenuContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 32px;
+    background-color: rgb(219, 255, 255);
+}
+
+.xMenuContainer > div {
+    padding-left: 32px;
+    padding-right: 16px;
+}
+
+.xMenuItem {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+    /* display: grid;
+    grid-template: auto / auto; */
+    /* z-index: 0; */
+
+.dropdown {
+    opacity: 0%;
+    position: absolute;
+    /* left: 0; */
+    padding: 0;
+    transform: translateY(20px);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+}
+
+/* .xMenuItem div:first-child {
+    background-color: rgb(219, 255, 255);
+    /* z-index: 2; 
+} */
+
+/* .xMenuItem div:not(:first-child) {
+    font-size: 16px;
+    z-index: 1;
+} */
+
+/* .xMenuItem div {
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    grid-area: 1 / 1 / 1 / 1;
+    background-color: rgb(219, 255, 255);
+} */
+
+.active-animation {
+    animation: party 5s infinite;
+}
+  
+@keyframes party{
+    0% {background-color: red;}
+    10% {background-color: orange;}     
+    20% {background-color: yellow;}
+    30% {background-color: green;}
+    40% {background-color: blue;}
+    50% {background-color: purple;} 
+}
